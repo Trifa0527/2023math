@@ -28,7 +28,7 @@ def randstring():                   # 8자리 랜덤 문자열 뽑는 코드
         result += random.choice(string.ascii_letters)
     return result
 
-def keygen():                       # 공개, 비밀키 생성에 필요한 시드 생성 코드
+def keygen():                       # 공개, 비밀키 생성에 필요한 시드 생성 코드 (소수 생성)
     seed = twoprimes()
     p = seed[0]
     q = seed[1]
@@ -125,7 +125,7 @@ def main(count, name):                    # 테스트 진행 코드
         else:
             f.write('\n')
         fsum += a[1]                                # 키 생성
-        ssum += a[2]                                # 비밀키 생성
+        ssum += a[2]                                # 공개키 비밀키 생성
         tsum += a[3]                                # 암호화 진행
         sum += timer                                # 총 시간
         print(i+1)
