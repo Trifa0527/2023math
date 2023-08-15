@@ -57,29 +57,30 @@ def encrypt():                      # 암호화 코드
     end = time.time()
     data.append(round(end - begin, 6))      # 키 생성
 #-------------------------------------------------------------
-    ori = (randstring())
-    oris = list(ori)
+    fstring = (randstring())
+    chstr = list(fstring)
     orior = []
     eori = []
 #-------------------------------------------------------------
     begin1 = time.time()
     d = private(key['m'])
+    pkey = public(key['m'])
     end1 = time.time()
-    data.append(round(end1 - begin1, 6))      # 개인키 생성
+    data.append(round(end1 - begin1, 6))      # 공개, 비공개키 생성
 #-------------------------------------------------------------
     etext = ""
     begin2 = time.time()
-    for orisc in range(0, len(oris)):
-        orior.append(ord(oris[orisc]))
+    for orisc in range(0, len(chstr)):
+        orior.append(ord(chstr[orisc]))
     for oriorc in range(0, len(orior)):
-        eori.append(((orior[oriorc]**public(key['m']))%key['n']))
+        eori.append(((orior[oriorc]**pkey)%key['n']))
     for eoric in range(0, len(eori)):
         etext += (str(eori[eoric]))
     end2 = time.time()
     data.append(round(end2 - begin2, 6))      # 암호화
 
 #-------------------------------------------------------------
-    data[0] += "평서문 : " + ori + "\n"
+    data[0] += "평서문 : " + fstring + "\n"
     data[0] += "암호문(NUMBER) : {}".format(eori) + "\n"
     data[0] += "암호문(ASCII) : {}".format(etext) + "\n"
     data[0] += "N : {}".format(key['n']) + "\n"
@@ -107,15 +108,15 @@ def decrypt():                      # 복호화 코드
     #     text += eroar[eroarc]
 #-------------------------------------------------------------
 
-def main(count):                    # 테스트 진행 코드
-    f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/result.txt", 'w')
+def main(count, name):                    # 테스트 진행 코드
+    f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'w')
     sum = 0.0
     fsum = 0.0
     ssum = 0.0
     tsum = 0.0
     f.close()
     for i in range(count):
-        f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/result.txt", 'a')
+        f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'a')
         a = encrypt()
         timer = round(a[1]+a[2]+a[3], 6)
         f.write(str(a[1])+ " " + str(a[2]) + " " + format(a[3], 'f') + " " + str(timer))
@@ -130,15 +131,15 @@ def main(count):                    # 테스트 진행 코드
         print(i+1)
         print(a[0])
         f.close()
-    f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/result.txt", 'a')
+    f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'a')
     f.write("\navg : " + str(round(fsum/count, 6))+ " " + str(round(ssum/count, 6)) + " " + format(round(tsum/count, 6), 'f')+ " " + str(round(sum/count, 6)))
     f.write("\n\nrepeated " + str(count) + ' time' + "\n")
     f.close()
 
-main(10000)
+main(10, 'sec')
 # def test(max):
 #     i = 0
-#     begin = time.time()
+#     begin = time.time()7
 #     while True:
 #         a = random.randrange(1, max)
 #         if prime(a) == 1:
