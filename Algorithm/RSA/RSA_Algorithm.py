@@ -109,36 +109,36 @@ def decrypt():                      # 복호화 코드
 #-------------------------------------------------------------
 
 def main(count, name):                    # 테스트 진행 코드
-    f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'w')
+    # f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'w')
     sum = 0.0
     fsum = 0.0
     ssum = 0.0
     tsum = 0.0
-    f.close()
+    # f.close()
     for i in range(count):
-        f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'a')
+        # f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'a')
         a = encrypt()
         timer = round(a[1]+a[2]+a[3], 6)
-        f.write(str(a[1])+ " " + str(a[2]) + " " + format(a[3], 'f') + " " + str(timer))
-        if a == 0:
-            f.write(' error\n')
-        else:
-            f.write('\n')
+        # f.write(str(a[1])+ " " + str(a[2]) + " " + format(a[3], 'f') + " " + str(timer))
+        # if a == 0:
+        #     # f.write(' error\n')
+        # else:
+        #     # f.write('\n')
         fsum += a[1]                                # 키 생성
         ssum += a[2]                                # 공개키 비밀키 생성
         tsum += a[3]                                # 암호화 진행
         sum += timer                                # 총 시간
         print(i+1)
         print(a[0])
-        f.close()
-    f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'a')
-    f.write("\navg : " + str(round(fsum/count, 6))+ " " + str(round(ssum/count, 6)) + " " + format(round(tsum/count, 6), 'f')+ " " + str(round(sum/count, 6)))
-    f.write("\n\nrepeated " + str(count) + ' time' + "\n")
-    f.close()
+        # f.close()
+    # f = open("/Users/yys/Basic/Coding/math/2023math/Algorithm/RSA/"+ str(name)+ ".txt", 'a')
+    # f.write("\navg : " + str(round(fsum/count, 6))+ " " + str(round(ssum/count, 6)) + " " + format(round(tsum/count, 6), 'f')+ " " + str(round(sum/count, 6)))
+    # f.write("\n\nrepeated " + str(count) + ' time' + "\n")
+    # f.close()
 
 main(10, 'sec')
 # def test(max):
-#     i = 0
+#     i = 0 
 #     begin = time.time()7
 #     while True:
 #         a = random.randrange(1, max)
